@@ -10,4 +10,8 @@ export const SongListWrapper = styled.div`
   h3 {
     font-size: 2rem;
   }
+
+  ul {
+    overflow-y: scroll;
+  }
 `;
