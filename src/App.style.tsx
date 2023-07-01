@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import { DefaultTheme, createGlobalStyle } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle<DefaultTheme>`
 body {
   font-family: 'Roboto', sans-serif;
 }

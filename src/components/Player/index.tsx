@@ -22,7 +22,11 @@ import {
   idState,
   songIndex,
 } from '../../recoil/atoms/player';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import {
+  useRecoilState,
+  useRecoilValue,
+  useSetRecoilState,
+} from 'recoil';
 import {
   currentSongQuery,
   songsQuery,
@@ -47,7 +51,7 @@ export default function Player(): ReactElement {
   const currentSong = useRecoilValue(currentSongQuery);
   const songs = useRecoilValue(songsQuery);
   const [currentSongIndex, setSongIndex] = useRecoilState(songIndex);
-  const [currentSongId, setCurrentSongId] = useRecoilState(idState);
+  const setCurrentSongId = useSetRecoilState(idState);
 
   useEffect(() => {
     if (currentSong && isPlaying) {

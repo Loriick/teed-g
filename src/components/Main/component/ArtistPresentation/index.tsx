@@ -11,7 +11,7 @@ interface Singer {
 }
 
 export default function ArtistPresentation(): ReactElement {
-  const [singer, getSinger] = useState<any>();
+  const [singer, getSinger] = useState<Singer>();
 
   useEffect(() => {
     const getData = async () => {
