@@ -1,11 +1,6 @@
 import { selector } from 'recoil';
-import { createClient } from '@supabase/supabase-js';
 import { idState } from '../atoms/player';
-
-export const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_KEY
-);
+import { supabase } from '../../helpers/supabase';
 
 export const songsQuery = selector({
   key: 'songs',

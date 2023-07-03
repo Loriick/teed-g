@@ -1,8 +1,9 @@
 import { ReactElement, Suspense } from 'react';
 import { MainWrapper } from './index.style';
 import ArtistPresentation from './component/ArtistPresentation';
-import SongList, { SongListFallBack } from './component/SongList';
+import SongList from './component/SongList';
 import Vynile, { VynileFallback } from './component/Vynile';
+import { SongListFallBack } from './component/SongList/index.fallback';
 
 export default function Main(): ReactElement {
   return (

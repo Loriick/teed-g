@@ -8,7 +8,7 @@ import {
 } from '../../../../recoil/atoms/player';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 
-interface Props {
+interface SongItemProps {
   cover?: string;
   title?: string;
   index: number;
@@ -20,7 +20,7 @@ export default function SongItem({
   title,
   index,
   id,
-}: Props): ReactElement {
+}: SongItemProps): ReactElement {
   const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
   const [currentSongId, setCurrentSongId] = useRecoilState(idState);
   const setsongIndex = useSetRecoilState(songIndex);

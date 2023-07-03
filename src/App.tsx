@@ -1,7 +1,8 @@
 import { Suspense, useEffect } from 'react';
 import Main from './components/Main';
-import Player, { PlayerFallBack } from './components/Player';
+import Player from './components/Player';
 import Sidebar from './components/Sidebar';
+import { PlayerFallBack } from './components/Player/index.fallback';
 
 function App() {
   useEffect(() => {

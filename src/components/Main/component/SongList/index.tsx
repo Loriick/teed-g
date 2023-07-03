@@ -1,17 +1,9 @@
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import SongItem from '../SongItem';
 import { SongListWrapper } from './index.style';
 import { songsQuery } from '../../../../recoil/selectors/songs';
 import { useRecoilValue } from 'recoil';
-
-export interface Songs {
-  cover_path: string;
-  created_at: string;
-  id: number;
-  singer: string;
-  song_path: string;
-  title: string;
-}
+import { Songs } from '../../../../types';
 
 export default function SongList(): ReactElement {
   const songs = useRecoilValue(songsQuery);
@@ -31,16 +23,6 @@ export default function SongList(): ReactElement {
             />
           )
         )}
-      </ul>
-    </SongListWrapper>
-  );
-}
-export function SongListFallBack(): ReactElement {
-  return (
-    <SongListWrapper>
-      <h3>Songs</h3>
-      <ul>
-        <li>No songs uploaded</li>
       </ul>
     </SongListWrapper>
   );

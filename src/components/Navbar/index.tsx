@@ -5,7 +5,7 @@ import { FaUser, FaRegSun } from 'react-icons/fa';
 export default function NavBar(): ReactElement {
   return (
     <NavBarWrapper>
-      <form action="">
+      <form>
         <input type="text" />
       </form>
       <div className="icon__container">

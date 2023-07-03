@@ -38,6 +38,7 @@ export const PlayerWrapper = styled.div`
       width: 100%;
       height: 10px;
       -webkit-appearance: none;
+      appearance: none;
       outline: none;
       overflow: hidden;
       background-color: white;

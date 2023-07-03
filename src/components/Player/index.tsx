@@ -31,17 +31,8 @@ import {
   currentSongQuery,
   songsQuery,
 } from '../../recoil/selectors/songs';
+import { formatTime } from '../../helpers/formatTime';
 
-const formatTime = (time: number | undefined): string => {
-  if (time && !isNaN(time)) {
-    const minutes = Math.floor(time / 60);
-    const formatMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-    const seconds = Math.floor(time % 60);
-    const formatSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    return `${formatMinutes}:${formatSeconds}`;
-  }
-  return '00:00';
-};
 export default function Player(): ReactElement {
   const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
   const [isMuted, setisMuted] = useRecoilState(isMutedState);
@@ -177,48 +168,6 @@ export default function Player(): ReactElement {
         </span>
         <span className="hover-button" onClick={handleMute}>
           {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
-          <span className="button-overlay"></span>
-        </span>
-      </div>
-    </PlayerWrapper>
-  );
-}
-
-export function PlayerFallBack(): ReactElement {
-  return (
-    <PlayerWrapper>
-      <div className="player__controller">
-        <span className="hover-button">
-          <FaStepBackward />
-          <span className="button-overlay"></span>
-        </span>
-        <span className="hover-button">
-          <FaPlay />
-          <span className="button-overlay"></span>
-        </span>
-        <span className="hover-button">
-          <FaStepForward />
-          <span className="button-overlay"></span>
-        </span>
-      </div>
-      <div className="player__infos">
-        <div className="title">
-          <p className="singer"></p>
-          <p className="song"></p>
-        </div>
-        <input type="range" className="progress-bar" />
-        <div className="timer">
-          <span>{formatTime(0)}</span>
-          <span>{formatTime(0)}</span>
-        </div>
-      </div>
-      <div className="player__settings">
-        <span className="hover-button">
-          <FaChromecast />
-          <span className="button-overlay"></span>
-        </span>
-        <span className="hover-button">
-          <FaVolumeUp />
           <span className="button-overlay"></span>
         </span>
       </div>

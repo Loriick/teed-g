@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { ArtistPresentationWrapper } from './index.style';
-import { supabase } from '../../../../recoil/selectors/songs';
+import { supabase } from '../../../../helpers/supabase';
 
 interface Singer {
   created_at: string;

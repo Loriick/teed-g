@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import { VideoWrapper } from './index.style';
 import VideoSrc from '../../../../assets/video.mp4';
 
