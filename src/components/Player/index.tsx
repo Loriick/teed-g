@@ -41,6 +41,12 @@ export default function Player(): ReactElement {
     }
   }, [isPlaying, audioRef, currentSong]);
 
+  useEffect(() => {
+    document.title = currentSong
+      ? `${currentSong.singer?.name} - ${currentSong.title}`
+      : 'FWI Stream';
+  }, [currentSong]);
+
   return (
     <PlayerWrapper>
       <div className="player__controller">
@@ -65,7 +71,7 @@ export default function Player(): ReactElement {
       </div>
       <div className="player__infos">
         <div className="title">
-          <p className="singer">{currentSong?.singer.name}</p>
+          <p className="singer">{currentSong?.singer?.name}</p>
           <p className="song">{currentSong?.title}</p>
         </div>
         <input

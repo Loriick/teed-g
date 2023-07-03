@@ -9,8 +9,8 @@ import {
 import { useRecoilState, useSetRecoilState } from 'recoil';
 
 interface SongItemProps {
-  cover?: string;
-  title?: string;
+  cover: string;
+  title: string;
   index: number;
   id: number;
 }
