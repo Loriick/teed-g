@@ -1,13 +1,11 @@
 import { Suspense } from 'react';
 import Main from './components/Main';
 import Player from './components/Player';
-import Sidebar from './components/Sidebar';
 import { PlayerFallBack } from './components/Player/index.fallback';
 
 function App() {
   return (
     <>
-      <Sidebar />
       <Main />
       <Suspense fallback={<PlayerFallBack />}>
         <Player />

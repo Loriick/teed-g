@@ -11,7 +11,7 @@ body {
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows:  auto 80px;
   grid-template-areas:
-    "sidebar main main main main"
+    "main main main main main"
     "player player player player player";
 
     @media (width < 768px) {
