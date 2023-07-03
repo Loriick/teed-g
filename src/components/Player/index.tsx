@@ -1,10 +1,4 @@
-import {
-  ReactElement,
-  SyntheticEvent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { ReactElement, useEffect, useRef } from 'react';
 import { PlayerWrapper } from './index.style';
 import {
   FaPlay,
@@ -16,33 +10,28 @@ import {
   FaVolumeMute,
 } from 'react-icons/fa';
 
-import {
-  isMutedState,
-  isPlayingState,
-  idState,
-  songIndex,
-} from '../../recoil/atoms/player';
-import {
-  useRecoilState,
-  useRecoilValue,
-  useSetRecoilState,
-} from 'recoil';
-import {
-  currentSongQuery,
-  songsQuery,
-} from '../../recoil/selectors/songs';
+import { useRecoilValue } from 'recoil';
+import { currentSongQuery } from '../../recoil/selectors/songs';
 import { formatTime } from '../../helpers/formatTime';
+import usePlayer from '../../hooks/usePlayer';
 
 export default function Player(): ReactElement {
-  const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
-  const [isMuted, setisMuted] = useRecoilState(isMutedState);
-  const [currentTime, setCurrentTime] = useState<number>(0);
-  const [duration, setDuration] = useState<number>(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const currentSong = useRecoilValue(currentSongQuery);
-  const songs = useRecoilValue(songsQuery);
-  const [currentSongIndex, setSongIndex] = useRecoilState(songIndex);
-  const setCurrentSongId = useSetRecoilState(idState);
+
+  const {
+    handleMute,
+    handleSetPlayOrPause,
+    handleDragTime,
+    handleTimeUpdate,
+    handleChangeNextTrack,
+    handleChangePreviousTrack,
+
+    currentTime,
+    duration,
+    isPlaying,
+    isMuted,
+  } = usePlayer({ audioRef, currentSong });
 
   useEffect(() => {
     if (currentSong && isPlaying) {
@@ -51,68 +40,6 @@ export default function Player(): ReactElement {
       audioRef.current?.pause();
     }
   }, [isPlaying, audioRef, currentSong]);
-
-  const handleSetPlayOrPause = (): void => {
-    if (currentSong) {
-      setIsPlaying((prev) => !prev);
-      isPlaying
-        ? audioRef.current?.play()
-        : audioRef.current?.pause();
-    }
-  };
-
-  const handleMute = (): void => {
-    if (currentSong) {
-      if (audioRef.current) {
-        audioRef.current.muted = !isMuted;
-      }
-      setisMuted((prev) => !prev);
-    }
-  };
-
-  const handleTimeUpdate = (e: SyntheticEvent<EventTarget>): void => {
-    const current = (e.target as HTMLMediaElement).currentTime;
-    const durationSong = (e.target as HTMLMediaElement).duration;
-
-    // TODO: gerer le passage a prochain morceau si current === duration
-
-    setCurrentTime(current);
-    setDuration(durationSong);
-  };
-
-  const handleChangeNextTrack = () => {
-    if (songs) {
-      if (currentSongIndex + 1 >= songs.length) {
-        setSongIndex(0);
-        setCurrentSongId(songs[0].id);
-      } else {
-        setSongIndex(currentSongIndex + 1);
-        setCurrentSongId(songs[currentSongIndex + 1].id);
-      }
-    }
-  };
-
-  const handleChangePreviousTrack = () => {
-    if (songs) {
-      if (currentSongIndex - 1 < 0) {
-        setSongIndex(songs.length - 1);
-        setCurrentSongId(songs[songs.length - 1].id);
-      } else {
-        setSongIndex(currentSongIndex - 1);
-        setCurrentSongId(songs[currentSongIndex - 1].id);
-      }
-    }
-  };
-
-  const handleDragTime = (e: SyntheticEvent<EventTarget>): void => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = parseInt(
-        (e.target as HTMLInputElement).value
-      );
-    }
-
-    setCurrentTime(parseInt((e.target as HTMLInputElement).value));
-  };
 
   return (
     <PlayerWrapper>

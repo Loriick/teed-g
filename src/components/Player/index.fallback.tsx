@@ -31,7 +31,12 @@ export function PlayerFallBack(): ReactElement {
           <p className="singer"></p>
           <p className="song"></p>
         </div>
-        <input type="range" className="progress-bar" />
+        <input
+          type="range"
+          max={0}
+          min={0}
+          className="progress-bar"
+        />
         <div className="timer">
           <span>{formatTime(0)}</span>
           <span>{formatTime(0)}</span>

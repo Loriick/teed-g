@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const VynileWrapper = styled.div<{ isPlaying?: boolean }>`
+export const VynileWrapper = styled.div<{ isPlaying: boolean }>`
   height: 45%;
   width: 100%;
   overflow: hidden;

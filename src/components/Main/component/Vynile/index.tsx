@@ -1,12 +1,12 @@
 import type { ReactElement } from 'react';
 import { VynileWrapper } from './index.style';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { currentSongQuery } from '../../../../recoil/selectors/songs';
 import { isPlayingState } from '../../../../recoil/atoms/player';
 
 export default function Vynile(): ReactElement {
   const currentSong = useRecoilValue(currentSongQuery);
-  const [isPlaying] = useRecoilState(isPlayingState);
+  const isPlaying = useRecoilValue(isPlayingState);
 
   return (
     <VynileWrapper isPlaying={isPlaying}>
@@ -20,5 +20,5 @@ export default function Vynile(): ReactElement {
 }
 
 export function VynileFallback(): ReactElement {
-  return <VynileWrapper></VynileWrapper>;
+  return <VynileWrapper isPlaying={false}></VynileWrapper>;
 }

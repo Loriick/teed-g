@@ -1,4 +1,4 @@
-export interface Songs {
+export interface Song {
   cover_path: string;
   created_at: string;
   id: number;
