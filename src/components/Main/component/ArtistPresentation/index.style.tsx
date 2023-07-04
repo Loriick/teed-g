@@ -5,7 +5,9 @@ export const ArtistPresentationWrapper = styled.div`
   max-height: 25rem;
   display: flex;
   @media (width < 768px) {
-    display: none;
+    flex-direction: column;
+    height: fit-content;
+    max-height: unset;
   }
 `;
 
@@ -15,6 +17,10 @@ export const ArtistThumbailContainer = styled.div`
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
+
+  @media (width < 768px) {
+    width: 100%;
+  }
 `;
 
 export const ArtistThumbail = styled.img`
@@ -30,11 +36,18 @@ export const ImageOverlay = styled.div`
   height: 100%;
   width: 100%;
   box-shadow: inset -80px 0px 100px rgba(0, 0, 0, 0.8);
+  @media screen and (width < 768px) {
+    box-shadow: inset -80px 0px 100px rgba(0, 0, 0, 0.5);
+  }
 `;
 
 export const ArtistInfoContainer = styled.div`
   margin-left: 5rem;
   width: 50%;
+  @media screen and (width < 768px) {
+    margin-left: unset;
+    width: 100%;
+  }
 `;
 
 export const ArtistTitle = styled.h1`

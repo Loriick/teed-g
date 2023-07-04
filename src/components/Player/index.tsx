@@ -64,7 +64,7 @@ export default function Player(): ReactElement {
     <PlayerWrapper>
       <PlayerControls>
         <div
-          className="hover-button"
+          className="hover-button previous-track"
           onClick={handleChangePreviousTrack}
         >
           <FaStepBackward />
@@ -75,7 +75,7 @@ export default function Player(): ReactElement {
           <span className="button-overlay"></span>
         </span>
         <span
-          className="hover-button"
+          className="hover-button next-track"
           onClick={handleChangeNextTrack}
         >
           <FaStepForward />
