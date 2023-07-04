@@ -7,39 +7,40 @@ export const ArtistPresentationWrapper = styled.div`
   @media (width < 768px) {
     display: none;
   }
+`;
 
-  .image__container {
-    width: 30%;
-    /* height: 100%; */
-    position: relative;
-    border-radius: 1rem;
-    overflow: hidden;
+export const ArtistThumbailContainer = styled.div`
+  width: 30%;
+  /* height: 100%; */
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+`;
 
-    > img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+export const ArtistThumbail = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
 
-    .overlay__image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      box-shadow: inset -80px 0px 100px rgba(0, 0, 0, 0.8);
-    }
-  }
+export const ImageOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  box-shadow: inset -80px 0px 100px rgba(0, 0, 0, 0.8);
+`;
 
-  .artist__infos {
-    margin-left: 5rem;
-    width: 50%;
+export const ArtistInfoContainer = styled.div`
+  margin-left: 5rem;
+  width: 50%;
+`;
 
-    h1 {
-      font-size: 3rem;
-    }
-    p {
-      font-size: 1.4rem;
-    }
-  }
+export const ArtistTitle = styled.h1`
+  font-size: 3rem;
+`;
+
+export const ArtistDescription = styled.p`
+  font-size: 1.4rem;
 `;

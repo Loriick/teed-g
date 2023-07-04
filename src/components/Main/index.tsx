@@ -1,5 +1,5 @@
 import { ReactElement, Suspense } from 'react';
-import { MainWrapper } from './index.style';
+import { MainWrapper, MediaContainer } from './index.style';
 import ArtistPresentation from './component/ArtistPresentation';
 import SongList from './component/SongList';
 import Vynile, { VynileFallback } from './component/Vynile';
@@ -12,11 +12,11 @@ export default function Main(): ReactElement {
       <Suspense fallback={<VynileFallback />}>
         <Vynile />
       </Suspense>
-      <div className="media-container">
+      <MediaContainer>
         <Suspense fallback={<SongListFallBack />}>
           <SongList />
         </Suspense>
-      </div>
+      </MediaContainer>
     </MainWrapper>
   );
 }

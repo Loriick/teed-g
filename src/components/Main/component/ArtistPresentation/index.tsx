@@ -1,5 +1,13 @@
 import { ReactElement, useEffect, useState } from 'react';
-import { ArtistPresentationWrapper } from './index.style';
+import {
+  ArtistDescription,
+  ArtistInfoContainer,
+  ArtistPresentationWrapper,
+  ArtistThumbail,
+  ArtistThumbailContainer,
+  ArtistTitle,
+  ImageOverlay,
+} from './index.style';
 import { supabase } from '../../../../helpers/supabase';
 
 interface Singer {
@@ -29,16 +37,21 @@ export default function ArtistPresentation(): ReactElement {
 
   return (
     <ArtistPresentationWrapper>
-      <div className="image__container">
+      <ArtistThumbailContainer>
         {singer && (
-          <img src={singer?.thumbail_path} alt="singer photo" />
+          <>
+            <ArtistThumbail
+              src={singer?.thumbail_path}
+              alt="singer photo"
+            />
+            <ImageOverlay />
+          </>
         )}
-        <div className="overlay__image"></div>
-      </div>
-      <div className="artist__infos">
-        <h1>{singer?.name}</h1>
-        <p>{singer?.description}</p>
-      </div>
+      </ArtistThumbailContainer>
+      <ArtistInfoContainer>
+        <ArtistTitle>{singer?.name}</ArtistTitle>
+        <ArtistDescription>{singer?.description}</ArtistDescription>
+      </ArtistInfoContainer>
     </ArtistPresentationWrapper>
   );
 }

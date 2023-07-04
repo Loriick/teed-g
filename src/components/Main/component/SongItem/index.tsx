@@ -1,5 +1,11 @@
 import { ReactElement } from 'react';
-import { SongItemWrapper } from './index.style';
+import {
+  ButtonContainer,
+  Cover,
+  CoverContainer,
+  SongItemWrapper,
+  SongTitleContainer,
+} from './index.style';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import {
   idState,
@@ -25,7 +31,7 @@ export default function SongItem({
   const [currentSongId, setCurrentSongId] = useRecoilState(idState);
   const setsongIndex = useSetRecoilState(songIndex);
   const isCurrentSongId = currentSongId === id;
-  const isTheActiveSong = isPlaying && isCurrentSongId;
+  const isCurrentSongPlaying = isPlaying && isCurrentSongId;
 
   const handleSetPlayOrPause = (): void => {
     if (isPlaying && currentSongId) {
@@ -41,21 +47,21 @@ export default function SongItem({
 
   return (
     <SongItemWrapper onClick={handleSetPlayOrPause}>
-      <div
-        className={`cover__container ${
-          isTheActiveSong ? 'active' : ''
-        }`}
-      >
-        <img src={cover} alt="cover" />
-      </div>
-      <div className="title">
+      <CoverContainer>
+        <Cover
+          src={cover}
+          alt="cover"
+          isCurrentSongPlaying={isCurrentSongPlaying}
+        />
+      </CoverContainer>
+      <SongTitleContainer>
         <p>
           {index + 1} {title}
         </p>
-      </div>
-      <div className="action">
-        {isTheActiveSong ? <FaPause /> : <FaPlay />}
-      </div>
+      </SongTitleContainer>
+      <ButtonContainer>
+        {isCurrentSongPlaying ? <FaPause /> : <FaPlay />}
+      </ButtonContainer>
     </SongItemWrapper>
   );
 }

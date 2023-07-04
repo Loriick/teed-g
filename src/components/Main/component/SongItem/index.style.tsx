@@ -6,7 +6,7 @@ export const SongItemWrapper = styled.li`
   display: flex;
   overflow: hidden;
 
-  height: 80px;
+  height: 50px;
   border-radius: 0;
   margin-bottom: 1.4rem;
   @media only screen and (min-width: 768px) {
@@ -19,38 +19,44 @@ export const SongItemWrapper = styled.li`
       background-color: rgba(198, 210, 209, 0.5);
     }
   }
+`;
 
-  .cover__container {
-    width: 5%;
-    margin-right: 1rem;
-    display: flex;
-    align-items: center;
-    padding: 0 1rem;
+export const CoverContainer = styled.div`
+  width: 5%;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
 
-    @media only screen and (max-width: 768px) {
-      height: 100%;
-      width: unset;
-    }
+  @media only screen and (max-width: 768px) {
+    height: 100%;
+    width: 50px;
+    margin-right: 3rem;
+    padding: 0;
+  }
+`;
 
-    > img {
-      width: 40px;
-      height: 40px;
-      transition: border-radius 0.4s ease-in;
-      @media only screen and (max-width: 768px) {
-        width: 80px;
-        height: 100%;
-      }
-    }
-    &.active > img {
-      border-radius: 50%;
-      animation: animateCover infinite linear 10s;
+export const Cover = styled.img<{
+  isCurrentSongPlaying: boolean;
+}>`
+  width: 40px;
+  height: 40px;
+  transition: border-radius 0.4s ease-in;
+  border-radius: ${(props) =>
+    props.isCurrentSongPlaying ? '50%' : 'unset'};
 
-      @media only screen and (max-width: 768px) {
-        animation: unset;
-        height: 100%;
-        border-radius: 0;
-      }
-    }
+  animation: ${(props) =>
+    props.isCurrentSongPlaying && 'animateCover infinite linear 10s'};
+
+  animation-play-state: ${({ isCurrentSongPlaying }) =>
+    isCurrentSongPlaying ? 'running' : 'paused'};
+
+  @media only screen and (max-width: 768px) {
+    width: 80px;
+    height: 100%;
+    animation: unset;
+    height: 100%;
+    border-radius: 0;
   }
 
   @keyframes animateCover {
@@ -61,26 +67,26 @@ export const SongItemWrapper = styled.li`
       transform: rotate(360deg);
     }
   }
+`;
 
-  .title {
-    flex-grow: 1;
-    font-size: 1.4rem;
-    display: flex;
-    align-items: center;
+export const SongTitleContainer = styled.div`
+  flex-grow: 1;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
 
-    @media only screen and (min-width: 768px) {
-      width: 90%;
-    }
+  @media only screen and (min-width: 768px) {
+    width: 90%;
   }
+`;
 
-  .action {
-    width: 5%;
-    font-size: 1.6rem;
-    display: flex;
-    align-items: center;
+export const ButtonContainer = styled.div`
+  width: 5%;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
 
-    @media only screen and (max-width: 768px) {
-      display: none;
-    }
+  @media only screen and (max-width: 768px) {
+    display: none;
   }
 `;

@@ -6,13 +6,21 @@ import {
   FaChromecast,
   FaVolumeUp,
 } from 'react-icons/fa';
-import { PlayerWrapper } from './index.style';
+import {
+  PlayerControls,
+  PlayerInfos,
+  PlayerProgressBar,
+  PlayerSingerName,
+  PlayerTimerContainer,
+  PlayerTitleContainer,
+  PlayerWrapper,
+} from './index.style';
 import { formatTime } from '../../helpers/formatTime';
 
 export function PlayerFallBack(): ReactElement {
   return (
     <PlayerWrapper>
-      <div className="player__controller">
+      <PlayerControls>
         <span className="hover-button">
           <FaStepBackward />
           <span className="button-overlay"></span>
@@ -25,23 +33,18 @@ export function PlayerFallBack(): ReactElement {
           <FaStepForward />
           <span className="button-overlay"></span>
         </span>
-      </div>
-      <div className="player__infos">
-        <div className="title">
-          <p className="singer"></p>
+      </PlayerControls>
+      <PlayerInfos>
+        <PlayerTitleContainer>
+          <PlayerSingerName></PlayerSingerName>
           <p className="song"></p>
-        </div>
-        <input
-          type="range"
-          max={0}
-          min={0}
-          className="progress-bar"
-        />
-        <div className="timer">
+        </PlayerTitleContainer>
+        <PlayerProgressBar type="range" max={0} min={0} />
+        <PlayerTimerContainer>
           <span>{formatTime(0)}</span>
           <span>{formatTime(0)}</span>
-        </div>
-      </div>
+        </PlayerTimerContainer>
+      </PlayerInfos>
       <div className="player__settings">
         <span className="hover-button">
           <FaChromecast />

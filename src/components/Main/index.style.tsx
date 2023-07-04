@@ -5,7 +5,13 @@ export const MainWrapper = styled.main`
   padding: 4rem 2.4rem;
   max-width: 1024px;
   margin: 0 auto;
-  .media-container {
-    display: flex;
+
+  @media screen and (max-width: 768px) {
+    width: 90%;
+    padding: 3rem 1.4rem;
   }
+`;
+
+export const MediaContainer = styled.div`
+  display: flex;
 `;

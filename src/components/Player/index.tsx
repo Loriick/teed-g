@@ -1,5 +1,14 @@
 import { ReactElement, useEffect, useRef } from 'react';
-import { PlayerWrapper } from './index.style';
+import {
+  PlayerControls,
+  PlayerInfos,
+  PlayerProgressBar,
+  PlayerSettingContainer,
+  PlayerSingerName,
+  PlayerTimerContainer,
+  PlayerTitleContainer,
+  PlayerWrapper,
+} from './index.style';
 import {
   FaPlay,
   FaStepBackward,
@@ -49,14 +58,14 @@ export default function Player(): ReactElement {
 
   return (
     <PlayerWrapper>
-      <div className="player__controller">
-        <span
+      <PlayerControls>
+        <div
           className="hover-button"
           onClick={handleChangePreviousTrack}
         >
           <FaStepBackward />
           <span className="button-overlay"></span>
-        </span>
+        </div>
         <span className="hover-button" onClick={handleSetPlayOrPause}>
           {isPlaying ? <FaPause /> : <FaPlay />}
           <span className="button-overlay"></span>
@@ -68,24 +77,25 @@ export default function Player(): ReactElement {
           <FaStepForward />
           <span className="button-overlay"></span>
         </span>
-      </div>
-      <div className="player__infos">
-        <div className="title">
-          <p className="singer">{currentSong?.singer?.name}</p>
-          <p className="song">{currentSong?.title}</p>
-        </div>
-        <input
+      </PlayerControls>
+      <PlayerInfos>
+        <PlayerTitleContainer>
+          <PlayerSingerName>
+            {currentSong?.singer?.name}
+          </PlayerSingerName>
+          <span className="song">{currentSong?.title}</span>
+        </PlayerTitleContainer>
+        <PlayerProgressBar
           type="range"
           min={0}
           max={duration}
           value={currentTime}
-          className="progress-bar"
           onChange={handleDragTime}
         />
-        <div className="timer">
+        <PlayerTimerContainer>
           <span>{formatTime(currentTime)}</span>
           <span>{formatTime(duration)}</span>
-        </div>
+        </PlayerTimerContainer>
         <audio
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleTimeUpdate}
@@ -93,8 +103,8 @@ export default function Player(): ReactElement {
           src={currentSong?.song_path}
           controls
         />
-      </div>
-      <div className="player__settings">
+      </PlayerInfos>
+      <PlayerSettingContainer className="player__settings">
         <span className="hover-button">
           <FaChromecast />
           <span className="button-overlay"></span>
@@ -103,7 +113,7 @@ export default function Player(): ReactElement {
           {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
           <span className="button-overlay"></span>
         </span>
-      </div>
+      </PlayerSettingContainer>
     </PlayerWrapper>
   );
 }

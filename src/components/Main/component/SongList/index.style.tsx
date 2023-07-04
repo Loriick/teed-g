@@ -3,15 +3,17 @@ import { styled } from 'styled-components';
 export const SongListWrapper = styled.div`
   width: 100%;
 
-  ul {
-    overflow-y: scroll;
-  }
-
   @media (width < 768px) {
     width: 100%;
     margin-trim: block-end;
   }
-  h3 {
-    font-size: 2rem;
-  }
+`;
+
+export const SongListTitle = styled.h3`
+  font-size: 2rem;
+  padding: 2rem 0;
+`;
+
+export const SongListContainer = styled.ul`
+  overflow-y: scroll;
 `;

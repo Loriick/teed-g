@@ -1,13 +1,17 @@
 import { ReactElement } from 'react';
-import { SongListWrapper } from './index.style';
+import {
+  SongListContainer,
+  SongListTitle,
+  SongListWrapper,
+} from './index.style';
 
 export function SongListFallBack(): ReactElement {
   return (
     <SongListWrapper>
-      <h3>Songs</h3>
-      <ul>
+      <SongListTitle>Songs</SongListTitle>
+      <SongListContainer>
         <li>No songs uploaded</li>
-      </ul>
+      </SongListContainer>
     </SongListWrapper>
   );
 }

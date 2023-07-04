@@ -1,6 +1,10 @@
 import type { ReactElement } from 'react';
 import SongItem from '../SongItem';
-import { SongListWrapper } from './index.style';
+import {
+  SongListContainer,
+  SongListTitle,
+  SongListWrapper,
+} from './index.style';
 import { songsQuery } from '../../../../recoil/selectors/songs';
 import { useRecoilValue } from 'recoil';
 import { Song } from '../../../../types';
@@ -10,8 +14,8 @@ export default function SongList(): ReactElement {
 
   return (
     <SongListWrapper>
-      <h3>Songs</h3>
-      <ul>
+      <SongListTitle>Songs</SongListTitle>
+      <SongListContainer>
         {(songs as Song[]).map(({ title, cover_path, id }, index) => (
           <SongItem
             key={id}
@@ -21,7 +25,7 @@ export default function SongList(): ReactElement {
             cover={cover_path}
           />
         ))}
-      </ul>
+      </SongListContainer>
     </SongListWrapper>
   );
 }

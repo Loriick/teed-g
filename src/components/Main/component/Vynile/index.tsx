@@ -1,5 +1,9 @@
 import type { ReactElement } from 'react';
-import { VynileWrapper } from './index.style';
+import {
+  CoverPlaceholder,
+  VynileCover,
+  VynileWrapper,
+} from './index.style';
 import { useRecoilValue } from 'recoil';
 import { currentSongQuery } from '../../../../recoil/selectors/songs';
 import { isPlayingState } from '../../../../recoil/atoms/player';
@@ -9,16 +13,20 @@ export default function Vynile(): ReactElement {
   const isPlaying = useRecoilValue(isPlayingState);
 
   return (
-    <VynileWrapper isPlaying={isPlaying}>
+    <VynileWrapper>
       {!currentSong?.cover_path ? (
-        <div className="placeholder">No music selected</div>
+        <CoverPlaceholder>No music selected</CoverPlaceholder>
       ) : (
-        <img src={currentSong?.cover_path} alt="music cover" />
+        <VynileCover
+          isPlaying={isPlaying}
+          src={currentSong.cover_path}
+          alt="music cover"
+        />
       )}
     </VynileWrapper>
   );
 }
 
 export function VynileFallback(): ReactElement {
-  return <VynileWrapper isPlaying={false}></VynileWrapper>;
+  return <VynileWrapper />;
 }
