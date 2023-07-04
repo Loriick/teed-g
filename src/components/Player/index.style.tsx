@@ -12,6 +12,14 @@ export const PlayerWrapper = styled.div`
   audio {
     display: none;
   }
+
+  @media (width < 768px) {
+    width: 100%;
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 `;
 
 export const PlayerControls = styled.div`

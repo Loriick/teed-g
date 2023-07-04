@@ -17,9 +17,7 @@ body {
     "player player player player player";
 
     @media (width < 768px) {
-       grid-template-areas:
-    "main main main main main"
-    "player player player player player";
+position: relative;
     }
 }
 `;
