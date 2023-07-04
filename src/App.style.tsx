@@ -3,10 +3,12 @@ import { DefaultTheme, createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle<DefaultTheme>`
 body {
   font-family: 'Roboto', sans-serif;
+  height: 100dvh;
 }
+
 #root {
   margin: 0 auto;
-  height: 100dvh;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows:  auto 80px;

@@ -6,7 +6,7 @@ export const ArtistPresentationWrapper = styled.div`
   display: flex;
   @media (width < 768px) {
     flex-direction: column;
-    height: fit-content;
+    height: 50%;
     max-height: unset;
   }
 `;
@@ -20,6 +20,7 @@ export const ArtistThumbailContainer = styled.div`
 
   @media (width < 768px) {
     width: 100%;
+    margin-bottom: 1rem;
   }
 `;
 
