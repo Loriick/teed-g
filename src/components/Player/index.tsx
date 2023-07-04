@@ -110,7 +110,7 @@ export default function Player(): ReactElement {
       </PlayerInfos>
       <PlayerSettingContainer className="player__settings">
         <span
-          className="hover-button"
+          className="hover-button repeat"
           onClick={handleChangeReplayStatus}
         >
           {replayStatus === 'once' ? (
@@ -122,12 +122,19 @@ export default function Player(): ReactElement {
           )}
           <span className="button-overlay"></span>
         </span>
-        <span className="hover-button">
+        <span className="hover-button cast">
           <FaChromecast />
           <span className="button-overlay"></span>
         </span>
-        <span className="hover-button" onClick={handleMute}>
+        <span className="hover-button mute" onClick={handleMute}>
           {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+          <span className="button-overlay"></span>
+        </span>
+        <span
+          className="hover-button next-track"
+          onClick={handleChangeNextTrack}
+        >
+          <FaStepForward />
           <span className="button-overlay"></span>
         </span>
       </PlayerSettingContainer>
