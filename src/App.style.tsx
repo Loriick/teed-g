@@ -17,6 +17,7 @@ body {
     "player player player player player";
 
     @media (width < 768px) {
+      display: block;
 position: relative;
     }
 }
