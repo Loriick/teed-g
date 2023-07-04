@@ -19,6 +19,8 @@ import {
   FaVolumeMute,
 } from 'react-icons/fa';
 
+import { TbRepeatOff, TbRepeatOnce, TbRepeat } from 'react-icons/tb';
+
 import { useRecoilValue } from 'recoil';
 import { currentSongQuery } from '../../recoil/selectors/songs';
 import { formatTime } from '../../helpers/formatTime';
@@ -35,11 +37,13 @@ export default function Player(): ReactElement {
     handleTimeUpdate,
     handleChangeNextTrack,
     handleChangePreviousTrack,
+    handleChangeReplayStatus,
 
     currentTime,
     duration,
     isPlaying,
     isMuted,
+    replayStatus,
   } = usePlayer({ audioRef, currentSong });
 
   useEffect(() => {
@@ -105,6 +109,19 @@ export default function Player(): ReactElement {
         />
       </PlayerInfos>
       <PlayerSettingContainer className="player__settings">
+        <span
+          className="hover-button"
+          onClick={handleChangeReplayStatus}
+        >
+          {replayStatus === 'once' ? (
+            <TbRepeatOnce />
+          ) : replayStatus === 'all' ? (
+            <TbRepeat />
+          ) : (
+            <TbRepeatOff />
+          )}
+          <span className="button-overlay"></span>
+        </span>
         <span className="hover-button">
           <FaChromecast />
           <span className="button-overlay"></span>

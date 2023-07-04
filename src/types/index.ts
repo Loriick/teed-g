@@ -8,3 +8,4 @@ export interface Song {
     name: string;
   };
 }
+export type ReplayStatus = 'off' | 'once' | 'all';

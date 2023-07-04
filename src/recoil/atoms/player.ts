@@ -10,7 +10,7 @@ export const isMutedState = atom({
   default: false,
 });
 
-export const idState = atom<number>({
+export const idState = atom<number | undefined>({
   key: 'idState',
   default: undefined,
 });

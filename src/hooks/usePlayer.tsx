@@ -11,7 +11,7 @@ import {
 } from '../recoil/atoms/player';
 import { RefObject, SyntheticEvent, useState } from 'react';
 import { songsQuery } from '../recoil/selectors/songs';
-import { Song } from '../types';
+import { ReplayStatus, Song } from '../types';
 
 function usePlayer({
   currentSong,
@@ -20,6 +20,11 @@ function usePlayer({
   currentSong: Song;
   audioRef: RefObject<HTMLAudioElement>;
 }) {
+  const [statusList, setStatusList] = useState<ReplayStatus[]>([
+    'off',
+    'once',
+    'all',
+  ]);
   const [isMuted, setisMuted] = useRecoilState(isMutedState);
   const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
   const [currentTime, setCurrentTime] = useState<number>(0);
@@ -27,6 +32,18 @@ function usePlayer({
   const songs = useRecoilValue(songsQuery);
   const setCurrentSongId = useSetRecoilState(idState);
   const [currentSongIndex, setSongIndex] = useRecoilState(songIndex);
+  const replayStatus = statusList[0];
+
+  const handleChangeReplayStatus = () => {
+    const statusRemoved = statusList.shift();
+
+    if (statusRemoved) {
+      setStatusList((previousStatus) => [
+        ...previousStatus,
+        statusRemoved,
+      ]);
+    }
+  };
 
   const handleSetPlayOrPause = (): void => {
     if (currentSong) {
@@ -54,9 +71,15 @@ function usePlayer({
       duration > 0 &&
       Math.floor(currentTime) === Math.floor(duration)
     ) {
-      console.log('here');
-      handleChangeNextTrack();
-      setCurrentTime(0);
+      // Replay that songs when it's finish
+      if (replayStatus === 'once' && songs) {
+        setCurrentTime(0);
+        setCurrentSongId(songs[currentSongIndex].id);
+        audioRef.current?.play();
+      } else {
+        handleChangeNextTrack();
+        setCurrentTime(0);
+      }
     } else {
       setCurrentTime(current);
     }
@@ -74,10 +97,17 @@ function usePlayer({
   };
 
   const handleChangeNextTrack = () => {
-    if (songs) {
+    if (songs && audioRef.current) {
       if (currentSongIndex + 1 >= songs.length) {
-        setSongIndex(0);
-        setCurrentSongId(songs[0].id);
+        if (replayStatus === 'all') {
+          setSongIndex(0);
+          setCurrentSongId(songs[0].id);
+        } else {
+          audioRef.current.pause();
+          setIsPlaying(false);
+          setCurrentTime(0);
+          setCurrentSongId(undefined);
+        }
       } else {
         setSongIndex(currentSongIndex + 1);
         setCurrentSongId(songs[currentSongIndex + 1].id);
@@ -104,11 +134,13 @@ function usePlayer({
     handleTimeUpdate,
     handleChangeNextTrack,
     handleChangePreviousTrack,
+    handleChangeReplayStatus,
 
     currentTime,
     duration,
     isPlaying,
     isMuted,
+    replayStatus,
   };
 }
 
